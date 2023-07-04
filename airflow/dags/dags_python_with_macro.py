@@ -21,7 +21,7 @@ with DAG(
         templates_dict = kwargs.get('templates_dict') or {}
         if templates_dict:
             start_date = templates_dict['start_date'] or 'start_date없음'
-            end_date = templates_dict.get('start_date') or 'end_date없음'
+            end_date = templates_dict.get('end_date') or 'end_date없음'
             print(start_date)
             print(end_date)
 
