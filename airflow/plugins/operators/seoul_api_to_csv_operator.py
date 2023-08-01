@@ -7,9 +7,9 @@ class SeoulApiToCsvOperator(BaseOperator):
 
     def __init__(self, dataset_nm, path, file_name, base_dt=None, **kwargs):
         super().__init__(**kwargs)
-        self.http_conn_id = 'openapi.seoul.go.kr',
-        self.path = path,
-        self.file_name=file_name,
+        self.http_conn_id = 'openapi.seoul.go.kr'
+        self.path = path
+        self.file_name=file_name
         self.endpoint='{{var.value.apikey_openapi_seoul_go_kr}}/json/'+ dataset_nm
         self.base_dt = base_dt
 
@@ -32,6 +32,7 @@ class SeoulApiToCsvOperator(BaseOperator):
             else:
                 start_row = end_row + 1
                 end_row += 1000
+                
         if not os.path.exists(self.path):
             os.system(f'mkdir -p {self.path}')
         total_row_df.to_csv(self.path +'/' + self.file_name, encoding='utf-8', index=False)
