@@ -21,11 +21,12 @@ with DAG(
                 msg = 'hook insrt 수행'
                 sql = 'insert into py_opr_drct_insrt values (%s, %s, %s, %s);'
                 cursor.execute(sql, (dag_id, task_id, run_id, msg))
+                conn.commit()
     
     insrt_postgres_with_hook = PythonOperator(
         task_id = 'insrt_postgres_with_hook',
         python_callable=insrt_postgres,
-        op_kwargs = {'postgres_conn_id':'conn-db-postgres_custom'}
+        op_kwargs = {'postgres_conn_id':'conn-db-postgres-custom'}
     )
 
     insrt_postgres_with_hook
